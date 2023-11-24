@@ -97,6 +97,7 @@ class authControllers {
     try {
       if (role === 'admin') {
         const user = await adminModel.findById(id);
+        console.log(user);
         responseReturn(res, 200, { userInfo: user });
       } else {
         const seller = await sellerModel.findById(id);
