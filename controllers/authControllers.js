@@ -31,7 +31,7 @@ class authControllers {
         responseReturn(res, 404, { error: 'Email not found' });
       }
     } catch (error) {
-      console.log(error);
+      console.log(error, '====');
       responseReturn(res, 500, { error: error.message });
     }
   };
