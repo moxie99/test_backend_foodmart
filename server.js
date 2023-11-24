@@ -12,7 +12,7 @@ app.use(
       'http://localhost:3001',
       'http://localhost:3000',
       'https://foodmart-o1ja.onrender.com',
-      'https://foodmartuser.vercel.app/',
+      'https://foodmartuser.vercel.app',
     ],
     credentials: true,
   })
