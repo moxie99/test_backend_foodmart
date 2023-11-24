@@ -8,7 +8,7 @@ require('dotenv').config();
 
 app.use(
   cors({
-    origin: ['http://localhost:3001', 'http://localhost:3000'],
+    origin: ['http://localhost:3001', 'http://localhost:3000', "https://foodmart-o1ja.onrender.com"],
     credentials: true,
   })
 );
