@@ -11,7 +11,6 @@ app.use(
     origin: [
       'http://localhost:3001',
       'http://localhost:3000',
-      'https://foodmart-o1ja.onrender.com',
       'https://foodmartuser.vercel.app',
     ],
     credentials: true,
@@ -25,6 +24,9 @@ app.use('/api', require('./routes/dashboard/productRoutes'));
 app.use('/api', require('./routes/dashboard/sellerRoutes'));
 app.use('/api/home', require('./routes/home/homeRoutes'));
 app.use('/api', require('./routes/home/cardRoutes'));
+
+app.use('/api', require('./routes/dashboard/dashboardIndexRoutes'));
+
 app.get('/', (req, res) => res.send('Hello World!'));
 const port = process.env.PORT;
 dbConnect();

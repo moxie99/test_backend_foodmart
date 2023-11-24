@@ -14,7 +14,6 @@ class authControllers {
       const admin = await adminModel.findOne({ email }).select('+password');
       if (admin) {
         const matchPassword = await bcrypt.compare(password, admin.password);
-        console.log({ email, password, admin, matchPassword });
         if (matchPassword) {
           const token = await createToken({
             id: admin.id,
