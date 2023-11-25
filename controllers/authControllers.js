@@ -98,15 +98,15 @@ class authControllers {
     try {
       if (role === 'admin') {
         const user = await adminModel.findById(id);
-        console.log(user, 'logging out get user error');
+        console.log(user, 'logging out1');
         responseReturn(res, 200, { userInfo: user });
       } else {
         const seller = await sellerModel.findById(id);
-        console.log(seller, 'logging out get user error');
+        console.log(seller, 'logging out2');
         responseReturn(res, 200, { userInfo: seller });
       }
     } catch (error) {
-      console.log(error, 'logging out get user error');
+      console.log(error, 'logging out 3');
       responseReturn(res, 500, { error: 'Internal server error' });
     }
   };
