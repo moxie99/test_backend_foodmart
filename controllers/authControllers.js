@@ -21,9 +21,9 @@ class authControllers {
           });
           res.cookie('accessToken', token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            domain: 'foodmart-o1ja.onrender.com', // Adjust the domain if needed
-            secure: true, // Ensure cookies are sent only over HTTPS
-            sameSite: 'None', // Allow cross-site requests
+            domain: 'foodmart-o1ja.onrender.com',
+            secure: true,
+            sameSite: 'None',
           });
           responseReturn(res, 200, { token, message: 'Login Successful' });
         } else {
@@ -52,9 +52,9 @@ class authControllers {
           });
           res.cookie('accessToken', token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            domain: 'foodmart-o1ja.onrender.com', // Adjust the domain if needed
-            secure: true, // Ensure cookies are sent only over HTTPS
-            sameSite: 'None', // Allow cross-site requests
+            domain: 'foodmart-o1ja.onrender.com',
+            secure: true,
+            sameSite: 'None',
           });
           responseReturn(res, 200, { token, message: 'Login success' });
         } else {
@@ -88,9 +88,9 @@ class authControllers {
         const token = await createToken({ id: seller.id, role: seller.role });
         res.cookie('accessToken', token, {
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-          domain: 'foodmart-o1ja.onrender.com', // Adjust the domain if needed
-          secure: true, // Ensure cookies are sent only over HTTPS
-          sameSite: 'None', // Allow cross-site requests
+          domain: 'foodmart-o1ja.onrender.com',
+          secure: true,
+          sameSite: 'None',
         });
         responseReturn(res, 201, {
           token,
@@ -181,15 +181,15 @@ class authControllers {
 
   logout = async (req, res) => {
     try {
+      // res.cookie('accessToken', null, {
+      //   expires: new Date(Date.now()),
+      //   httpOnly: true,
+      // });
       res.cookie('accessToken', null, {
         expires: new Date(Date.now()),
-        httpOnly: true,
-      });
-      res.cookie('accessToken', null, {
-        expires: new Date(Date.now()),
-        domain: 'foodmart-o1ja.onrender.com', // Adjust the domain if needed
-        secure: true, // Ensure cookies are sent only over HTTPS
-        sameSite: 'None', // Allow cross-site requests
+        domain: 'foodmart-o1ja.onrender.com',
+        secure: true,
+        sameSite: 'None',
       });
       responseReturn(res, 200, { message: 'logout success' });
     } catch (error) {
