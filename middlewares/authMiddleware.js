@@ -3,7 +3,6 @@ const jwt = require('jsonwebtoken');
 module.exports.authMiddleware = async (req, res, next) => {
   const { accessToken } = req.cookies;
   console.log('123', req);
-  console.log('456', res);
   console.log('token ', accessToken);
   if (!accessToken) {
     return res.status(409).json({ error: 'Please login first' });

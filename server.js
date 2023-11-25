@@ -9,6 +9,17 @@ require('dotenv').config();
 const socket = require('socket.io');
 
 const server = http.createServer(app);
+
+
+const io = socket(server, {
+  cors: {
+    origin: '*',
+    credentials: true,
+  },
+});
+app.use(bodyParser.json());
+app.use(cookieParser());
+
 app.use(
   cors({
     origin: [
@@ -21,15 +32,6 @@ app.use(
     credentials: true,
   })
 );
-
-const io = socket(server, {
-  cors: {
-    origin: '*',
-    credentials: true,
-  },
-});
-app.use(bodyParser.json());
-app.use(cookieParser());
 app.use('/api', require('./routes/authRoutes'));
 app.use('/api', require('./routes/dashboard/categoryRoutes'));
 app.use('/api', require('./routes/dashboard/productRoutes'));
