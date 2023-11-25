@@ -2,10 +2,13 @@ const express = require('express');
 const { dbConnect } = require('./utils/db');
 const app = express();
 const cors = require('cors');
+const http = require('http');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
+const socket = require('socket.io');
 
+const server = http.createServer(app);
 app.use(
   cors({
     origin: [
@@ -18,6 +21,13 @@ app.use(
     credentials: true,
   })
 );
+
+const io = socket(server, {
+  cors: {
+    origin: '*',
+    credentials: true,
+  },
+});
 app.use(bodyParser.json());
 app.use(cookieParser());
 app.use('/api', require('./routes/authRoutes'));
@@ -32,4 +42,6 @@ app.use('/api', require('./routes/dashboard/dashboardIndexRoutes'));
 app.get('/', (req, res) => res.send('Hello World!'));
 const port = process.env.PORT;
 dbConnect();
-app.listen(port, () => console.log(`Example app listening on port ${port}!`));
+server.listen(port, () =>
+  console.log(`Example app listening on port ${port}!`)
+);
