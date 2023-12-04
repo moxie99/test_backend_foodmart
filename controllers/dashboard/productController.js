@@ -42,7 +42,7 @@ class productController {
           sellerId: id,
           name,
           slug,
-          shopName: shopName[0].trim,
+          shopName: shopName[0].trim(),
           category: category[0].trim(),
           description: description[0].trim(),
           stock: parseInt(stock[0]),

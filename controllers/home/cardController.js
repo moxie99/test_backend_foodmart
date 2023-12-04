@@ -95,6 +95,7 @@ class cardController {
         let price = 0;
         for (let j = 0; j < stockProduct.length; j++) {
           const tempProduct = stockProduct[j].products[0];
+          console.log('tem[', tempProduct);
           if (unique[i] === tempProduct.sellerId.toString()) {
             let pri = 0;
             if (tempProduct.discount !== 0) {
