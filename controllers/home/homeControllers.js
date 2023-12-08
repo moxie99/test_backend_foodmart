@@ -70,45 +70,51 @@ class homeControllers {
     const { slug } = req.params;
     try {
       const product = await productModel.findOne({
-        slug,
+        slug: new RegExp('^' + slug + '$', 'i'),
       });
-      const relatedProducts = await productModel
-        .find({
-          $and: [
-            {
-              _id: {
-                $ne: product.id,
+      if (!product) {
+        // Handle the case where no product is found
+        console.log('Product not found');
+        return responseReturn(res, 404, { error: 'Product not found' });
+      } else {
+        const relatedProducts = await productModel
+          .find({
+            $and: [
+              {
+                _id: {
+                  $ne: product._id,
+                },
               },
-            },
-            {
-              category: {
-                $eq: product.category,
+              {
+                category: {
+                  $eq: product.category,
+                },
               },
-            },
-          ],
-        })
-        .limit(20);
-      const moreProducts = await productModel
-        .find({
-          $and: [
-            {
-              _id: {
-                $ne: product.id,
+            ],
+          })
+          .limit(20);
+        const moreProducts = await productModel
+          .find({
+            $and: [
+              {
+                _id: {
+                  $ne: product._id,
+                },
               },
-            },
-            {
-              sellerId: {
-                $eq: product.sellerId,
+              {
+                sellerId: {
+                  $eq: product.sellerId,
+                },
               },
-            },
-          ],
-        })
-        .limit(3);
-      responseReturn(res, 200, {
-        product,
-        relatedProducts,
-        moreProducts,
-      });
+            ],
+          })
+          .limit(3);
+        responseReturn(res, 200, {
+          product,
+          relatedProducts,
+          moreProducts,
+        });
+      }
     } catch (error) {
       console.log(error.message);
     }
@@ -177,7 +183,6 @@ class homeControllers {
 
   submit_review = async (req, res) => {
     const { name, rating, review, productId } = req.body;
-    console.log(req.body);
     try {
       await reviewModel.create({
         productId,

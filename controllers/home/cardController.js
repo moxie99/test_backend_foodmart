@@ -95,7 +95,6 @@ class cardController {
         let price = 0;
         for (let j = 0; j < stockProduct.length; j++) {
           const tempProduct = stockProduct[j].products[0];
-          console.log('tem[', tempProduct);
           if (unique[i] === tempProduct.sellerId.toString()) {
             let pri = 0;
             if (tempProduct.discount !== 0) {
@@ -194,7 +193,7 @@ class cardController {
       });
       if (product) {
         responseReturn(res, 404, {
-          error: 'Allready added',
+          error: 'Already added',
         });
       } else {
         await wishlistModel.create(req.body);
@@ -227,7 +226,7 @@ class cardController {
     try {
       const wishlist = await wishlistModel.findByIdAndDelete(wishlistId);
       responseReturn(res, 200, {
-        message: 'Remove success',
+        message: 'Removed successfully',
         wishlistId,
       });
     } catch (error) {
