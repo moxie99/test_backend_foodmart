@@ -190,8 +190,9 @@ class authControllers {
         domain: 'foodmart-o1ja.onrender.com',
         secure: true,
         sameSite: 'None',
+        httpOnly: true,
       });
-      responseReturn(res, 200, { message: 'logout success' });
+      responseReturn(res, 200, { message: 'logged out successfully' });
     } catch (error) {
       responseReturn(res, 500, { error: error.message });
     }

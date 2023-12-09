@@ -115,7 +115,7 @@ io.on('connection', (soc) => {
   soc.on('send_message_admin_to_seller', (msg) => {
     const seller = findSeller(msg.receverId);
     if (seller !== undefined) {
-      soc.to(seller.socketId).emit('receved_admin_message', msg);
+       soc.to(seller.socketId).emit('receved_admin_message', msg);
     }
   });
 
@@ -133,7 +133,7 @@ io.on('connection', (soc) => {
     io.emit('activeSeller', allSeller);
     io.emit('activeCustomer', allCustomer);
   });
-});
+});    
 
 app.use(bodyParser.json());
 app.use(cookieParser());

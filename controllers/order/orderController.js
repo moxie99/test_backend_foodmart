@@ -251,7 +251,7 @@ class orderController {
       await customerOrder.findByIdAndUpdate(orderId, {
         delivery_status: status,
       });
-      responseReturn(res, 200, { message: 'order status change success' });
+      responseReturn(res, 200, { message: 'order status changed successfully' });
     } catch (error) {
       console.log('get admin order status error ' + error.message);
       responseReturn(res, 500, { message: 'internal server error' });
