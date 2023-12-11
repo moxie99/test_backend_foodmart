@@ -21,9 +21,6 @@ class authControllers {
           });
           res.cookie('accessToken', token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            domain: 'foodmart-o1ja.onrender.com',
-            secure: true,
-            sameSite: 'None',
           });
           responseReturn(res, 200, { token, message: 'Login Successful' });
         } else {
@@ -52,9 +49,6 @@ class authControllers {
           });
           res.cookie('accessToken', token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-            domain: 'foodmart-o1ja.onrender.com',
-            secure: true,
-            sameSite: 'None',
           });
           responseReturn(res, 200, { token, message: 'Login success' });
         } else {
@@ -88,9 +82,6 @@ class authControllers {
         const token = await createToken({ id: seller.id, role: seller.role });
         res.cookie('accessToken', token, {
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
-          domain: 'foodmart-o1ja.onrender.com',
-          secure: true,
-          sameSite: 'None',
         });
         responseReturn(res, 201, {
           token,
@@ -187,9 +178,6 @@ class authControllers {
       // });
       res.cookie('accessToken', null, {
         expires: new Date(Date.now()),
-        domain: 'foodmart-o1ja.onrender.com',
-        secure: true,
-        sameSite: 'None',
         httpOnly: true,
       });
       responseReturn(res, 200, { message: 'logged out successfully' });

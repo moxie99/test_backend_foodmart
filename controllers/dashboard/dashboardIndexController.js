@@ -17,7 +17,7 @@ module.exports.get_seller_dashboard_data = async (req, res) => {
   const { id } = req;
 
   try {
-    const totalSele = await sellerWallet.aggregate([
+    const totalSale = await sellerWallet.aggregate([
       {
         $match: {
           sellerId: {
@@ -87,7 +87,7 @@ module.exports.get_seller_dashboard_data = async (req, res) => {
 
     responseReturn(res, 200, {
       totalOrder,
-      totalSale: totalSele.length > 0 ? totalSele[0].totalAmount : 0,
+      totalSale: totalSale.length > 0 ? totalSale[0].totalAmount : 0,
       totalPendingOrder,
       messages,
       recentOrders,
@@ -101,7 +101,7 @@ module.exports.get_seller_dashboard_data = async (req, res) => {
 module.exports.get_admin_dashboard_data = async (req, res) => {
   const { id } = req;
   try {
-    const totalSele = await myShopWallet.aggregate([
+    const totalSale = await myShopWallet.aggregate([
       {
         $group: {
           _id: null,
@@ -122,7 +122,7 @@ module.exports.get_admin_dashboard_data = async (req, res) => {
 
     responseReturn(res, 200, {
       totalOrder,
-      totalSale: totalSele.length > 0 ? totalSele[0].totalAmount : 0,
+      totalSale: totalSale.length > 0 ? totalSale[0].totalAmount : 0,
       totalSeller,
       messages,
       recentOrders,

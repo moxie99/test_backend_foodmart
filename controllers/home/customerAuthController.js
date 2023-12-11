@@ -71,7 +71,7 @@ class customerAuthController {
     res.cookie('customerToken', '', {
       expires: new Date(Date.now()),
     });
-    responseReturn(res, 200, { message: 'Logout success' });
+    responseReturn(res, 200, { message: 'Logged out successfully' });
   };
 }
 
