@@ -21,6 +21,8 @@ class authControllers {
           });
           res.cookie('accessToken', token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+            secure: true, // Set to true if your application uses HTTPS
           });
           responseReturn(res, 200, { token, message: 'Login Successful' });
         } else {
@@ -49,6 +51,8 @@ class authControllers {
           });
           res.cookie('accessToken', token, {
             expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+            httpOnly: true,
+            secure: true, // Set to true if your application uses HTTPS
           });
           responseReturn(res, 200, { token, message: 'Login success' });
         } else {
@@ -82,6 +86,8 @@ class authControllers {
         const token = await createToken({ id: seller.id, role: seller.role });
         res.cookie('accessToken', token, {
           expires: new Date(Date.now() + 7 * 24 * 60 * 60 * 1000),
+          httpOnly: true,
+          secure: true, // Set to true if your application uses HTTPS
         });
         responseReturn(res, 201, {
           token,
