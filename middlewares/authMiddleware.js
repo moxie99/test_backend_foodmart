@@ -5,7 +5,7 @@ module.exports.authMiddleware = async (req, res, next) => {
   console.log('11122233343444', accessToken);
   console.log('00000000', req.cookies);
   if (!accessToken) {
-    return res.status(409).json({ error: 'Please login first' });
+    return res.status(401).json({ error: 'Please login first' });
   } else {
     try {
       const decodeToken = await jwt.verify(accessToken, process.env.JWT_SECRET);
