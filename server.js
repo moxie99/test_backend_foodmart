@@ -139,6 +139,12 @@ app.use(bodyParser.json());
 app.use(cookieParser());
 
 
+app.use((req, res, next) => {
+  console.log('req.cookies:', req.cookies);
+  next();
+});
+
+
 app.use('/api', require('./routes/paymentRoutes'));
 app.use('/api', require('./routes/bannerRoutes'));
 app.use('/api', require('./routes/chatRoutes'));
