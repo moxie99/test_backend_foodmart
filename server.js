@@ -16,13 +16,15 @@ app.use(
     origin: [
       'http://localhost:3001',
       'http://localhost:3000',
-      'https://foodmartdashboard.onrender.com',
       'https://foodmartuser.vercel.app',
       'https://foodmartdashboard.vercel.app',
     ],
     credentials: true,
   })
 );
+
+app.use(bodyParser.json());
+app.use(cookieParser());
 
 const io = socket(server, {
   cors: {
@@ -115,7 +117,7 @@ io.on('connection', (soc) => {
   soc.on('send_message_admin_to_seller', (msg) => {
     const seller = findSeller(msg.receverId);
     if (seller !== undefined) {
-       soc.to(seller.socketId).emit('receved_admin_message', msg);
+      soc.to(seller.socketId).emit('receved_admin_message', msg);
     }
   });
 
@@ -135,8 +137,7 @@ io.on('connection', (soc) => {
   });
 });    
 
-app.use(bodyParser.json());
-app.use(cookieParser());
+
 
 
 app.use((req, res, next) => {
